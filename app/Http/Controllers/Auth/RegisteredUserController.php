@@ -11,6 +11,8 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules;
 
+use App\Models\Users\Subjects;
+
 class RegisteredUserController extends Controller
 {
     /**
@@ -20,7 +22,8 @@ class RegisteredUserController extends Controller
      */
     public function create()
     {
-        return view('auth.register');
+        $subjects = Subjects::all();
+        return view('auth.register.register', compact('subjects'));
     }
 
     /**
@@ -33,22 +36,33 @@ class RegisteredUserController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
-            'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'password' => ['required', 'confirmed', Rules\Password::defaults()],
-        ]);
+        DB::beginTransaction();
+        try{
+            $old_year = $request->old_year;
+            $old_month = $request->old_month;
+            $old_day = $request->old_day;
+            $data = $old_year . '-' . $old_month . '-' . $old_day;
+            $birth_day = date('Y-m-d', strtotime($data));
+            $subjects = $request->subject;
 
-        $user = User::create([
-            'name' => $request->name,
-            'email' => $request->email,
-            'password' => Hash::make($request->password),
-        ]);
-
-        event(new Registered($user));
-
-        Auth::login($user);
-
-        return redirect(RouteServiceProvider::HOME);
+            $user_get = User::create([
+                'over_name' => $request->over_name,
+                'under_name' => $request->under_name,
+                'over_name_kana' => $request->over_name_kana,
+                'under_name_kana' => $request->under_name_kana,
+                'mail_address' => $request->mail_address,
+                'sex' => $request->sex,
+                'birth_day' => $birth_day,
+                'role' => $request->role,
+                'password' => bcrypt($request->password)
+            ]);
+            $user = User::findOrFail($user_get->id);
+            $user->subjects()->attach($subjects);
+            DB::commit();
+            return view('auth.login.login');
+        }catch(\Exception $e){
+            DB::rollback();
+            return redirect()->route('loginView');
+        }
     }
 }
