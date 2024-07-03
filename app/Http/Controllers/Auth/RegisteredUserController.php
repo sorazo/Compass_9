@@ -3,15 +3,16 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
-use App\Models\User;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules;
+use DB;
 
 use App\Models\Users\Subjects;
+use App\Models\Users\User;
 
 class RegisteredUserController extends Controller
 {
@@ -57,7 +58,7 @@ class RegisteredUserController extends Controller
                 'password' => bcrypt($request->password)
             ]);
             $user = User::findOrFail($user_get->id);
-            $user->subjects()->attach($subjects);
+            // $user->subjects()->attach($subjects);
             DB::commit();
             return view('auth.login.login');
         }catch(\Exception $e){

@@ -11,7 +11,7 @@ use App\Models\USers\User;
 use Auth;
 use DB;
 
-class CalendarsController extends Controller
+class CalendarController extends Controller
 {
     public function show(){
         $calendar = new CalendarView(time());

@@ -15,10 +15,6 @@
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300&family=Oswald:wght@200&display=swap" rel="stylesheet">
         <link href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" rel="stylesheet">
-
-        <!-- Scripts -->
-        <!-- <link href="{{ mix('css/app.css') }}" rel="stylesheet">
-        <script src="{{ mix('js/app.js') }}"></script> -->
     </head>
     <body>
         {{ $slot }}

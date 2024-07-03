@@ -30,15 +30,10 @@ class AuthenticatedSessionController extends Controller
     {
         $userdata = $request -> only('mail_address', 'password');
         if (Auth::attempt($userdata)) {
-            return redirect('/top');
+            return redirect('top');
         }else{
-            return redirect('/login')->with('flash_message', 'name or password is incorrect');
+            return redirect('login')->with('flash_message', 'name or password is incorrect');
         }
-        // $request->authenticate();
-
-        // $request->session()->regenerate();
-
-        // return redirect()->intended(RouteServiceProvider::HOME);
     }
 
     /**
@@ -55,6 +50,6 @@ class AuthenticatedSessionController extends Controller
 
         $request->session()->regenerateToken();
 
-        return redirect('/');
+        return redirect('login');
     }
 }
