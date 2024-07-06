@@ -1,5 +1,4 @@
-@extends('layouts.sidebar')
-@section('content')
+<x-sidebar>
 <div class="vh-100 d-flex">
   <div class="w-50 mt-5">
     <div class="m-3 detail_container">
@@ -73,4 +72,4 @@
     </form>
   </div>
 </div>
-@endsection
+</x-sidebar>

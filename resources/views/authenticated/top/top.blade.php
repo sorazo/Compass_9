@@ -1,6 +1,4 @@
-@extends('layouts.sidebar')
-
-@section('content')
+<x-sidebar>
 <div class="vh-100 border">
   <div class="top_area w-75 m-auto pt-5">
     <p>マイページ</p>
@@ -12,4 +10,4 @@
     </div>
   </div>
 </div>
-@endsection
+</x-sidebar>

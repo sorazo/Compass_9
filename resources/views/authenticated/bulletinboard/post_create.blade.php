@@ -1,6 +1,4 @@
-@extends('layouts.sidebar')
-
-@section('content')
+<x-sidebar>
 <div class="post_create_container d-flex">
   <div class="post_create_area border w-50 m-5 p-5">
     <div class="">
@@ -46,4 +44,4 @@
   </div>
   @endcan
 </div>
-@endsection
+</x-sidebar>

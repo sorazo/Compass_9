@@ -1,6 +1,4 @@
-@extends('layouts.sidebar')
-
-@section('content')
+<x-sidebar>
 <div class="board_area w-100 border m-auto d-flex">
   <div class="post_view w-75 mt-5">
     <p class="w-75 m-auto">投稿一覧</p>
@@ -43,4 +41,4 @@
   </div>
   <form action="{{ route('post.show') }}" method="get" id="postSearchRequest"></form>
 </div>
-@endsection
+</x-sidebar>

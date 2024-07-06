@@ -1,6 +1,4 @@
-@extends('layouts.sidebar')
-
-@section('content')
+<x-sidebar>
 <p>ユーザー検索</p>
 <div class="search_content w-100 border d-flex">
   <div class="reserve_users_area">
@@ -104,4 +102,4 @@
     <form action="{{ route('user.show') }}" method="get" id="userSearchRequest"></form>
   </div>
 </div>
-@endsection
+</x-sidebar>

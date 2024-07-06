@@ -1,6 +1,4 @@
-@extends('layouts.sidebar')
-
-@section('content')
+<x-sidebar>
 
 <div class="post_view w-75 mt-5">
   <p class="w-75 m-auto">自分の投稿</p>
@@ -19,4 +17,4 @@
   @endforeach
 </div>
 
-@endsection
+</x-sidebar>
